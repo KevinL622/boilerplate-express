@@ -43,7 +43,13 @@ app.get('/', function(req, res){
 
 
 /** 8) Chaining middleware. A Time server */
-
+app.get('/now', function(req, res, next){
+  req.time = new Date().toString();
+  next();
+}, function(req, res){
+  console.log(req.time);
+  res.json({"time": req.time});
+});
 
 /** 9)  Get input from client - Route parameters */
 
